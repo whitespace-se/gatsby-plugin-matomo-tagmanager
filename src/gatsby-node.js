@@ -4,40 +4,37 @@ exports.onPreInit = (args, options) => {
     options.defaultDataLayer = {
       type: typeof options.defaultDataLayer,
       value: options.defaultDataLayer,
-    }
+    };
 
     if (options.defaultDataLayer.type === `function`) {
-      options.defaultDataLayer.value = options.defaultDataLayer.value.toString()
+      options.defaultDataLayer.value = options.defaultDataLayer.value.toString();
     }
   }
-}
+};
 
 exports.pluginOptionsSchema = ({ Joi }) =>
   Joi.object({
-    id: Joi.string().description(
-      `Google Tag Manager ID that can be found in your Tag Manager dashboard.`
+    containerId: Joi.string().description(
+      `Matomo Tag Manager container ID that can be found in your Tag Manager dashboard.`
+    ),
+    domain: Joi.string().description(
+      `Matomo domain is the domain of your Matomo site.`
     ),
     includeInDevelopment: Joi.boolean()
       .default(false)
       .description(
-        `Include Google Tag Manager when running in development mode.`
+        `Include Matomo Tag Manager when running in development mode.`
       ),
     defaultDataLayer: Joi.alternatives()
       .try(Joi.object(), Joi.function())
       .default(null)
       .description(
-        `Data layer to be set before Google Tag Manager is loaded. Should be an object or a function.`
+        `Data layer to be set before Matomo Tag Manager is loaded. Should be an object or a function.`
       ),
-    gtmAuth: Joi.string().description(
-      `Google Tag Manager environment auth string.`
-    ),
-    gtmPreview: Joi.string().description(
-      `Google Tag Manager environment preview name.`
-    ),
     dataLayerName: Joi.string().description(`Data layer name.`),
     routeChangeEventName: Joi.string()
       .default(`gatsby-route-change`)
       .description(
         `Name of the event that is triggered on every Gatsby route change.`
       ),
-  })
+  });
