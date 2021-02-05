@@ -45,13 +45,13 @@ exports.onRenderBody = (
 ) => {
   if (process.env.NODE_ENV === `production` || includeInDevelopment) {
     let defaultDataLayerCode = ``;
-    if (defaultDataLayer) {
-      defaultDataLayerCode = generateDefaultDataLayer(
-        defaultDataLayer,
-        reporter,
-        dataLayerName
-      );
-    }
+    // if (defaultDataLayer) {
+    //   defaultDataLayerCode = generateDefaultDataLayer(
+    //     defaultDataLayer,
+    //     reporter,
+    //     dataLayerName
+    //   );
+    // }
 
     setHeadComponents([
       <script
