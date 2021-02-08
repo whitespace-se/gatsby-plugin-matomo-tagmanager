@@ -2,8 +2,8 @@ import React from "react";
 import { oneLine, stripIndent } from "common-tags";
 
 const generateMTM = ({ containerId, domain, dataLayerName }) => stripIndent`
-var _mtm = window._mtm = window._mtm || [];
-_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+var ${dataLayerName} = window.${dataLayerName} = window.${dataLayerName} || [];
+${dataLayerName}.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
 var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
 g.type='text/javascript'; g.async=true; g.src='https://${domain}/js/container_${containerId}.js'; s.parentNode.insertBefore(g,s);`;
 
@@ -45,13 +45,13 @@ exports.onRenderBody = (
 ) => {
   if (process.env.NODE_ENV === `production` || includeInDevelopment) {
     let defaultDataLayerCode = ``;
-    // if (defaultDataLayer) {
-    //   defaultDataLayerCode = generateDefaultDataLayer(
-    //     defaultDataLayer,
-    //     reporter,
-    //     dataLayerName
-    //   );
-    // }
+    if (defaultDataLayer) {
+      defaultDataLayerCode = generateDefaultDataLayer(
+        defaultDataLayer,
+        reporter,
+        dataLayerName
+      );
+    }
 
     setHeadComponents([
       <script
