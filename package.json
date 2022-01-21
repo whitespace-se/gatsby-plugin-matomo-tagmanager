@@ -19,7 +19,7 @@
     "matomo",
     "matomo tagmanager"
   ],
-  "license": "MIT",
+  "license": "AGPL",
   "main": "index.js",
   "peerDependencies": {
     "gatsby": "^2.0.0"
